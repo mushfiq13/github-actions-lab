@@ -9,7 +9,7 @@ jobs:
   basic-checkout:
     runs-on: ubuntu-latest
     env:
-      ACTIONS_RUNNER_DEBUG = true
+      ACTIONS_RUNNER_DEBUG: true
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
