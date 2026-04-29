@@ -29,7 +29,7 @@ jobs:
 
       - name: Some new commands
         run: |
-          echo "Current date and time" $(date)"
+          echo "Current date and time: $(date)"
           echo "Available disk space: $(df -h)"
           echo "Memory usage: $(-m)"
 
