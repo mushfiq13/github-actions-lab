@@ -1,45 +1,49 @@
 name: Basic Checkout Lab
 
+# Trigger workflow on push to the main branh
 on:
   push:
-    branches:
+    brances:
       - main
 
 jobs:
   basic-checkout:
     runs-on: ubuntu-latest
+    
+    # Add a custom environment variable to the job
     env:
-      ACTIONS_RUNNER_DEBUG: true
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      CUSTOM_MESSAGE: "Hello from Github Actions"
 
+    steps:
+      # Checkout repository
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      # List repository contents
       - name: List files
         run: ls -la
 
+      # Display system information
       - name: Show system info
         run: |
           echo "Repository: $GITHUB_REPOSITORY"
           echo "Operating System: $(uname -a)"
-          echo "Curent Directory: $(pwd)"
+          echo "Current Directory: $(pwd)"
+          echo "Current Date and Time: $(date)"
+          echo "Available Disk Space: $(df -h)"
+          echo "Memory Usage: $(free -m)"
 
+      # Check software versions
       - name: Check versions
         run: |
           echo "Node version: $(node --version)"
           echo "Python version: $(python --version)"
           echo "Git version: $(git --version)"
 
-      - name: Some new commands
-        run: |
-          echo "Current date and time: $(date)"
-          echo "Available disk space: $(df -h)"
-          echo "Memory usage: $(-m)"
+      - name: Display custom message
+        run: echo "Custom message: $CUSTOM_MESSAGE"
 
-      - name: Custo environment variables
-        env:
-          CUSTOM_MESSAGE: "Hello from Github Actions"
-        run: echo "$CUSTOM_MESSAGE"
-
-      - name: Conditional Execution
+      # Conditional Execution
+      - name: Conditional step
         if: github.event_name == 'push'
         run: echo "This was triggered by a push event"
