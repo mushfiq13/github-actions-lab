@@ -44,8 +44,7 @@ jobs:
         # Without pipe (|), you would get error: 
         # "Nested mappings are not allowed in compact mappings at line 44, column 14: run: echo 'Custom message: $CUSTOM_MESSAGE' ^"
         # Otherwise you have write like this: echo "$CUSTOM_MESSAGE"
-        run: |
-          echo "Custom message: $CUSTOM_MESSAGE"
+        run: echo "Custom message $CUSTOM_MESSAGE"
 
       # Conditional Execution
       - name: Conditional step
