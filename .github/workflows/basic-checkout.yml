@@ -41,7 +41,8 @@ jobs:
           echo "Git version: $(git --version)"
 
       - name: Display custom message
-        run: echo "$CUSTOM_MESSAGE"
+        run: |
+          echo "Custom message: $CUSTOM_MESSAGE"
 
       # Conditional Execution
       - name: Conditional step
