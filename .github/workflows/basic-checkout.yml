@@ -1,6 +1,6 @@
 name: Basic Checkout Lab
 
-# Trigger workflow on push to the main branh
+# Trigger workflow on push to the main branch
 on:
   push:
     branches:
@@ -41,10 +41,12 @@ jobs:
           echo "Git version: $(git --version)"
 
       - name: Display custom message
-        # Without pipe (|), you would get error: 
-        # "Nested mappings are not allowed in compact mappings at line 44, column 14: run: echo 'Custom message: $CUSTOM_MESSAGE' ^"
-        # Otherwise you have write like this: echo "$CUSTOM_MESSAGE"
-        run: echo "Custom message $CUSTOM_MESSAGE"
+        # Use pipe (|) when the string contains a colon (:) followed by a space.
+        # YAML treats ": " as a key-value separator and throws:
+        #   "Nested mappings are not allowed in compact mappings at line 44, column 14: run: echo 'Custom message: $CUSTOM_MESSAGE' ^"
+        # Either use pipe (|), or remove colon (:) or remove the space after colon (:).
+        run: |
+          echo "Custom message: $CUSTOM_MESSAGE"
 
       # Conditional Execution
       - name: Conditional step
