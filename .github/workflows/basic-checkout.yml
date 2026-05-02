@@ -45,5 +45,5 @@ jobs:
 
       # Conditional Execution
       - name: Conditional step
-        if: ${{ github.event_name == 'push' }}
+        if: ${{ github.event_name == "push" }}
         run: echo "This was triggered by a push event"
