@@ -3,7 +3,7 @@ name: Basic Checkout Lab
 # Trigger workflow on push to the main branh
 on:
   push:
-    brances:
+    branches:
       - main
 
 jobs:
